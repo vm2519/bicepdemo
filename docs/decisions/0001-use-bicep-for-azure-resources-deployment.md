@@ -1,6 +1,6 @@
 # Use Bicep for Azure Resources Deployment
 
-* Status: Accepted
+* Status: Superseded
 * Deciders: Cloud Platform team
 * Date: 2025-05-13
 
@@ -37,3 +37,4 @@ Chosen option: "Bicep", because Bicep is designed and supported by Microsoft, en
 ## Links
 
 * - [Bicep documentation] (https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
+* [Superseded by ADR 0002] (https://github.com/vm2519/bicepdemo/blob/adrdemo/docs/decisions/0002-use-terraform-for-multi-cloud-resource-deployment.md)
