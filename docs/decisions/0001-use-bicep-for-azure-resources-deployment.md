@@ -1,6 +1,6 @@
 # Use Bicep for Azure Resources Deployment
 
-* Status: Proposed
+* Status: Accepted
 * Deciders: Cloud Platform team
 * Date: 2025-05-13
 
