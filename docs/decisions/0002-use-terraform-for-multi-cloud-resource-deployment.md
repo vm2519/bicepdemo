@@ -4,7 +4,7 @@
 * Deciders: Cloud Platform Team
 * Date: 2025-05-14
 
-Technical Story: Multi-Cloud Resource Deployment (Supersedes [ADR-0001](./0001-use-bicep-for-azure-resources-deployment.md))
+Technical Story: Multi-Cloud Resource Deployment
 
 ## Context and Problem Statement
 
