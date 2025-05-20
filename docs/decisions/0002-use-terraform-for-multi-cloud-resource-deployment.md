@@ -1,7 +1,7 @@
 # Use Terraform for Multi-Cloud Resource Deployment
 
 * Status: Accepted
-* Deciders: Cloud Platform Team
+* Deciders: Cloud Platform Teams
 * Date: 2025-05-14
 
 Technical Story: Multi-Cloud Resource Deployment
