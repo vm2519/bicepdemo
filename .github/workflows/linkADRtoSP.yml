@@ -34,3 +34,37 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      # Runs a set of commands using the runners shell
+      - name: Get access token for SharePoint
+        id: get_token
+        env:
+          TENANT_ID: ${{ secrets.SP_TENANT_ID }}
+          CLIENT_ID: ${{ secrets.SP_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.SP_CLIENT_SECRET }}
+        run: |
+          echo "Getting access token for SharePoint"
+          TOKEN=$(curl -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&resource=https://graph.microsoft.com/" \
+            "https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token" | jq -r '.access_token')
+          echo "token=$TOKEN" >> $GITHUB_ENV
+          echo "Access token retrieved successfully"
+
+      - name: upload file to SharePoint
+        env:
+          SP_SITE_ID: ${{ secrets.SP_SITE_ID }}
+          SP_FILE_PATH: ${{ secrets.SP_FILE_PATH }}
+          SP_FOLDER: ${{ secrets.SP_FOLDER }}
+          TOKEN: ${{ env.token }}
+        run: |
+          SP_FILE_NAME=$(basename ${SP_FILE_PATH})  
+          UPLOAD_URL="https://graph.microsoft.com/v1.0/sites/${SP_SITE_ID}/drive/root:/${SP_FOLDER}/${SP_FILE_NAME}:/content"
+          
+          echo "Uploading file to SharePoint"
+          curl -X PUT -H "Authorization: Bearer ${TOKEN}" \
+            -H "Content-Type: application/octet-stream" \
+            -d "@$SP_FILE_PATH" \
+            $UPLOAD_URL
+          echo "File uploaded successfully"
+        
+          
